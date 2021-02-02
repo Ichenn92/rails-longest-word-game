@@ -1,0 +1,18 @@
+<div class="letters">
+  <% @letters.each do |letter| %>
+    <div class="letter">
+      <h3><%= letter %></h3>
+    </div>
+  <% end %>
+</div>
+
+<h3>What is the longest word you can find?</h3>
+
+<form class="inline-form" action="score" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <% @letters.each do |letter| %>
+    <%= hidden_field_tag :letters, @letters.join('') %>
+<% end %>
+  <input class="input-text" type="text" name="word" placeholder="type the longest word">
+  <input class="btn btn-fill" type="submit" name="" value="Play">
+</form>

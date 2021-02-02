@@ -1,0 +1,9 @@
+<h2>Your score is:</h2>
+
+<% @messages.each do |message| %>
+  <h3><%= message %></h3>
+<% end %>
+
+<div class="btn btn-empty btn-round">
+  <%= link_to 'Play again', new_path %>
+</div>
