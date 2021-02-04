@@ -3,7 +3,9 @@ require 'open-uri'
 class GamesController < ApplicationController
 
   def new
+    puts current_user
     @letters = generate_grid(10)
+    @highest_score = session[:points]
   end
 
   def score
@@ -16,10 +18,16 @@ class GamesController < ApplicationController
 
       @messages << "Sorry but #{@word} can't be built out of #{letters}" unless used_only_letters?
       @messages << "Sorry but #{@word} does not seem to be a valid English @word..." unless english_word?
-      @messages << "Congratulations! #{@word} is a valid English word!" if @messages.empty? 
+      if @messages.empty? 
+        @messages << "Congratulations! #{@word} is a valid English word!" 
+        @current_score = count_point
+        session[:points] = session[:points] ? session[:points] + @current_score : 0
+      end
     else
       @messages << "Something went wrong... please try again!"
     end
+
+    @highest_score = session[:points]
   end
 
   private
@@ -47,6 +55,15 @@ class GamesController < ApplicationController
   def dictionary_reponse
     result = open("#{DICTIONARY_API}/#{@word}").read
     JSON.parse(result)
+  end
+
+  def count_point
+    @word.length ** 2
+  end
+
+  def current_user
+    @_current_user ||= session[:current_user_id] &&
+      User.find_by(id: session[:current_user_id])
   end
 
 end

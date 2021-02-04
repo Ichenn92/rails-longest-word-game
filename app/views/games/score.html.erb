@@ -1,3 +1,5 @@
+<%= render partial: 'score_board' %>
+
 <h2>Result</h2>
 
 <% @messages.each do |message| %>
@@ -5,5 +7,5 @@
 <% end %>
 
 <div class="btn btn-empty btn-round">
-  <%= link_to 'Play again', new_path %>
+  <%= link_to 'Play again', root_path %>
 </div>
