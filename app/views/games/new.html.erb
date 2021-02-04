@@ -1,12 +1,12 @@
 <%= render partial: 'score_board' %>
 
-<div class="letters">
+<ul class="letters">
   <% @letters.each do |letter| %>
     <div class="letter">
-      <h3><%= letter %></h3>
+      <li><%= letter %></li>
     </div>
   <% end %>
-</div>
+</ul>
 
 <h3>What is the longest word you can find?</h3>
 

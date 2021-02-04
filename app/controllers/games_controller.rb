@@ -16,10 +16,10 @@ class GamesController < ApplicationController
       @letters = params[:letters].split('')
       letters = @letters.dup
 
-      @messages << "Sorry but #{@word} can't be built out of #{letters}" unless used_only_letters?
-      @messages << "Sorry but #{@word} does not seem to be a valid English @word..." unless english_word?
+      @messages << "Sorry but \"#{@word}\" can't be built out of #{letters}" unless used_only_letters?
+      @messages << "Sorry but \"#{@word}\" does not seem to be a valid English word..." unless english_word?
       if @messages.empty? 
-        @messages << "Congratulations! #{@word} is a valid English word!" 
+        @messages << "Congratulations! \"#{@word}\" is a valid English word!" 
         @current_score = count_point
         session[:points] = session[:points] ? session[:points] + @current_score : 0
       end
