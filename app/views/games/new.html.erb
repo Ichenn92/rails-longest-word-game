@@ -12,9 +12,7 @@
 
 <form class="inline-form" action="score" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <% @letters.each do |letter| %>
-    <%= hidden_field_tag :letters, @letters.join('') %>
-<% end %>
+  <%= hidden_field_tag :letters, @letters.join('') %>
   <input class="input-text" type="text" name="word" placeholder="type the longest word">
   <input class="btn btn-fill" type="submit" name="" value="Play">
 </form>
